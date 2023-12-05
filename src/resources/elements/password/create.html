@@ -1,0 +1,12 @@
+<template>
+
+  <div class="form-group form-group-lg row">
+    <global-label label-text="Password"
+               help-text=""
+               for-id="inputPassword"
+               editing="true"
+               is-required.one-way="true"></global-label>
+    <input id="inputPassword" name="inputPassword" class="form-control" type="password"
+           value.bind="password & validate" placeholder="Password" change.trigger="onChange()">
+  </div>
+</template>

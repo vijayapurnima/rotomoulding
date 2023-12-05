@@ -1,0 +1,18 @@
+<template>
+  <div class="container">
+    <div style="text-align: center;color:#0c9444;font-size: 22px;padding-top:1.5%;"><img class="greenHeader">&nbsp;UNLOAD</div>
+    <hr style="background-color:#0c9444;height: 5px;">
+    <br>
+    <div style="margin-left:20px;margin-right: 20px; " if.bind="loaded">
+      <unload-detail product.bind="product" oven-name.bind="ovenName" run-date.bind="runDate"
+                     arm-id.bind="armName" load-flag="true" staff.bind="users"
+                     validation.bind="validation"></unload-detail>
+      <div style="margin-top: 180px;">
+        <img type="button" class="badIcon left" click.trigger="goToFaultPage()"/>
+        &nbsp;
+        <img type="button" click.trigger="viewNext()" class="right goodIcon"/></button>
+      </div>
+      <span style="margin-bottom:20%;padding-left: 40%; font-size:20px;">${products.indexOf(product)+1}/${products.length}</span>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,60 @@
+<template>
+
+  <require from="../product/index"></require>
+
+  <div class="container" style="width:100vw;  overflow-y: visible;">
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    </div>
+    <ul class="collapsible" if.bind="!finishFlag" repeat.for="run of getSortedArray(runIds)">
+      <li style="background-color: #ffd1d1;height:2em;line-height:2em;" if.bind="$index>0 && checkMouldChange(run)">
+        &nbsp;&nbsp;&nbsp;Change
+      </li>
+      <p></p>
+      <li>
+        <span class="right stageClass">
+        <button class="btn loadButton ${(run.stage.match('Stop')?'stopIcon':'submitIcon')}"
+                if.bind="run.run_number>-1" click.trigger="updateStatus(run)"
+                disabled.bind="run.disabled||((($index>=2||cookingFlag()) && (run.status && run.status.match('loaded'))))">${run.stage || 'Start Load'}&nbsp;&nbsp;<i
+          class="material-icons">schedule</i>${(run.stage==undefined ||run.stage.match('Start'))?'':((getProducts(run).length>1)?(getTime(run.timer.elapsed,run)):(getTime(run.timer.elapsed,run,getProducts(run)[0].wo_timer.elapsed,getProducts(run)[0].wo_time,getProducts(run)[0].wo_timer)))}</button>&nbsp;
+        <button class="btn loadButton"
+                if.bind="( run.run_number>-1 &&(!run.status || run.status=='loading'  || run.status=='loading_paused'))"
+                disabled.bind="checkDisability(run) || !run.status" click.trigger="checkRunStatus(run)">Load
+          Run Sheet(s)&nbsp;&nbsp;&nbsp;<i class="material-icons">edit</i></button>&nbsp;
+        <button class="btn loadButton"
+                if.bind="(run.status== 'cooled' || run.status=='unloading_paused' || run.status=='unloading' )"
+                click.trigger="viewUnloadInfo(run)" disabled.bind="checkDisability(run) || run.status== 'cooled'">Unload
+          Run Sheet(s)&nbsp;&nbsp;&nbsp;<i class="material-icons">edit</i></button>
+        </span>
+
+        <div class="collapsible-header" style="padding:0;" data-collapsible="expandable">
+          <span style="line-height: 4em;">&nbsp;&nbsp;${runOrderNames[$index]}</span>
+          <span class="right" style="padding-top:1.2%;vertical-align: top;">
+        <img
+          class="${(run.run_number>-1 && (run.status== 'loading_paused' || run.status== 'loading'  ||!run.status)?'loadIconActive':'loadIcon')}">
+        <img
+          class="${((run.run_number>-1 && (run.status== 'cooking' || run.status=='loaded'))?'cookIconActive':'cookIcon')}">
+        <img
+          class="${(run.run_number>-1 && (run.status== 'cooling' || run.status=='cooked')?'coolIconActive':'coolIcon')}">
+        <img
+          class="${(run.run_number>-1 && (run.status== 'cooled' || run.status=='unloading' || run.status=='unloading_paused' )?'unloadIconActive':'unloadIcon')}">&nbsp;
+          </span>
+        </div>
+        <div class="collapsible-body">
+          <view-products products.bind="getProducts(run)"
+                         arm-id.bind="armId" oven-name.bind="ovenName" arm-name.bind="armName" run-id.bind="run"
+                         status.bind="run.status"
+                         save-details.bind="saveDetails" update-status.bind="updateStatus"></view-products>
+        </div>
+      </li>
+    </ul>
+    <ul class="collapsible" if.bind="finishFlag">
+      <li>
+        <div class="collapsible-body" if.bind="finishFlag">
+          <view-products products.bind="finishingList" oven-name.bind="ovenName" finish-flag.bind=finishFlag
+                         finish-product.bind="finishProduct" run-status.bind="run.status"></view-products>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</template>

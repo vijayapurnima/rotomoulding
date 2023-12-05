@@ -1,0 +1,26 @@
+<template>
+
+  <div class="row" validate.bind="validation">
+    <span class="col m8" style="text-align: left;"></span>
+    <span class="col m2" style="color:green;text-align: justify-all;">OK</span>
+    <span class="col m2" style="color:red;text-align: justify-all;">NO</span>
+  </div>
+  <table class="striped">
+    <tbody>
+    <tr repeat.for="item of product.quality_list" item.bind="item">
+      <td class="col m8">${item.qa_checklist_name}</td>
+      <td class="col m2"><label class="greenChecklabel">
+        <input type="checkbox" checked.bind="item.isOkChecked" change.delegate="updateCheckbox(item,'OK')">
+        <span class="checkmark"></span>
+      </label></td>
+      <td class="col m2"><label class="redChecklabel">
+        <input type="checkbox" checked.bind="item.isNoChecked" change.delegate="updateCheckbox(item,'NO')">
+        <span class="checkmark"></span>
+      </label></td>
+      <td class="col m12 form-group"
+          if.bind="(item.qa_checklist_name.match('Product notes') || item.qa_checklist_name.match('Production Notes')) && item.isNoChecked">
+        <textarea  class="form-control" value.bind="product.product_note_mod & validate"></textarea></td>
+    </tr>
+    </tbody>
+  </table>
+</template>

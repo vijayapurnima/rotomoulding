@@ -1,0 +1,16 @@
+<template>
+
+  <h4>Sign In</h4>
+  <form submit.delegate="LoginSubmit()" style="padding: 15px;">
+
+    <account username.two-way="username" password.two-way="password" validation.bind="controller"></account>
+
+    <br>
+
+    <div class="row no-gutters row-no-margin">
+        <button id="signIn" type="submit" class="btn right" tabindex="0">
+          Sign in&nbsp;<i class="fa fa-lg fa-sign-in"></i>
+        </button>
+    </div>
+  </form>
+</template>

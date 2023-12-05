@@ -1,0 +1,15 @@
+<template>
+  <require from="../password/create"></require>
+
+  <div class="form-group form-group-lg row">
+    <global-label label-text.bind="message" help-text="" for-id="user_name"
+               is-required.one-way="true" editing="true" text-under=""></global-label>
+    <input class="form-control"  name="username" id="user_name" placeholder="Username"
+           value.bind="username & validate" tabindex="0">
+  </div>
+
+  <div>
+    <password password.two-way="password"  validation.bind="validation"></password>
+  </div>
+
+</template>

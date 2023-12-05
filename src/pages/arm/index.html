@@ -1,0 +1,39 @@
+<template>
+  <require from="../run/index"></require>
+
+  <div if.bind="loaded" style="overflow-x: hidden;">
+    <ul class="tabs tab-demo z-depth-1" style="width:100%;">
+      <li class="tab" style="width:${tabWidth}%" repeat.for="arm of arms">
+        <a class="${(arm.id==armId)?'active':''}" id="arm_${arm.id}"
+           click.trigger="viewArm(arm.id)">${arm.name}</a>
+      </li>
+      <li class="tab" style="width:${tabWidth}%"><a id="finishing_list" class="${(finishFlag)?'active':''}"
+                                                    click.trigger="viewArm(-1)">Finishing List</a></li>
+    </ul>
+
+    <div class="center" style="margin-top: 45px;">
+      <div class="row text-warning"
+           show.bind="(((arms && arms.length>0) && (!runs || runs.length==0) && !finishFlag)) || (!arms || arms.length==0)">
+        <i class="material-icons warning">error</i>&nbsp;<span class="textAlign" if.bind="(!arms || arms.length==0)"><b> No Arms -</b> This oven currently has no arms.</span>
+        <span class="textAlign" if.bind="((arms && arms.length>0) && (!runs || runs.length==0) && !finishFlag)"> <b>No Runs -</b> This arm currently has no runs.</span>
+      </div>
+      <br>
+      <span class="textAlign" if.bind="!finishFlag">
+      <h4>${ovenName}&nbsp;-&nbsp;${armName}</h4>
+          <p style="padding-left:1%;">&nbsp;Cook Schedule List</p>
+    </span>
+      <span class="textAlign" if.bind="finishFlag">
+        <h4>${ovenName}</h4>
+          <p>&nbsp;Finishing List</p>
+    </span>
+    </div>
+
+    <div id="content">
+      <view-runs runs.bind="runs" run-ids.bind="runIds" if.bind="((arms && arms.length>0) && runs) || finishFlag"
+                 finish-flag.bind="finishFlag" finishing-list.bind="finishingList" arm-id.bind="armId"
+                 oven-name.bind="ovenName" arm-name.bind="armName" load-sheets.bind="loadSheets" unload-sheets.bind="unloadSheets"
+                 finish-product.bind="finishingProduct" stages.bind="stages" cooking-flag.bind="getCookingFlag"></view-runs>
+    </div>
+  </div>
+</template>
+

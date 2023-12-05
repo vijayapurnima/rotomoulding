@@ -1,0 +1,26 @@
+<template>
+
+  <div style="text-align: center">
+  <img class="productImage" if.bind="product.finishing_data.thickness_test_image" src.bind="getRawUrl()"/>
+    <span  if.bind="!product.finishing_data.thickness_test_image" style="color: darkred;" >No Image for this Product</span>
+  </div>
+  <br>
+  <table class="striped imageTable" style="border: 1px solid lightgrey" if.bind="product.finishing_data.thickness_test_image">
+    <thead class="table-header">
+    <th class="col m2"></th>
+    <th class="col m2">A</th>
+    <th class="col m2">B</th>
+    <th class="col m2">C</th>
+    <th class="col m2">D</th>
+    <th class="col m2">E</th>
+    </thead>
+    <tbody >
+    <tr repeat.for="i of 7">
+      <td class="col m2" >${i+1}</td>
+      <td class="col m2" repeat.for="j of 5">
+      <input type="number" step="any" style="border-bottom: none; height:100%;" value.bind="product.image_data[(j+65).toString()+(i+1).toString()]">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</template>

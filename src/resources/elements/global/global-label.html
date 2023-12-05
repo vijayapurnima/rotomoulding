@@ -1,0 +1,9 @@
+<template>
+  <label for.bind="forId">
+    ${labelText}&nbsp;<small if.bind="isRequired && editing" style="color: #DF0101;"><sup>*</sup></small>
+    <help if.bind="helpText" text.bind="helpText"></help>
+    <small if.bind="textUnder && editing" class="text-muted" style="font-weight: normal; margin: 0 0 -1px 0;">
+      ${textUnder}
+    </small>
+  </label>
+</template>

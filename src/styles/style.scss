@@ -1,0 +1,741 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300,300italic,400italic,600italic,700italic);
+
+$brand-primary: #1f5183;
+$brand-primary-light: #225a96;
+$brand-primary-light2: #038fbb;
+$brand-primary-dark: #204376;
+
+$nav-height: 50px;
+$nav-padding: 12px;
+
+body {
+  &.no-footer {
+    margin-bottom: 0;
+  }
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  // Refer http://stackoverflow.com/questions/32675849/screen-zooms-in-when-a-bootstrap-modal-is-opened-on-ios-9-safari
+  // Fixes defect where screen zooms in when modal is opened
+  padding-right: 0px !important;
+  max-width: 100vw;
+  max-height: 100vw;
+}
+
+.dev-background {
+  background: rgba(255, 192, 203, 0.1);
+}
+
+.badge {
+  margin-left: 1.5em;
+  float: none;
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.badge span {padding: 8px;}
+
+.badge-danger {
+  color: #fff;
+  background-color: #dc3545;
+}
+
+.nav-wrapper {
+  min-height: $nav-height;
+  background-color: $brand-primary;
+
+}
+
+.btn {
+  background-color: $brand-primary-light;
+  text-transform: none;
+
+}
+
+.button-primary {
+  width: 30%;
+  min-height: 100px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.button-secondary {
+  width: 70%;
+  min-height: 40px;
+  border-radius: 5px;
+  text-align: center;
+
+}
+
+.grid {
+  padding-top: 20px;
+  padding-left: 11vw;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.btn:hover, .btn:focus, .btn:active {
+  background-color: $brand-primary-dark;
+}
+
+.business-logo {
+  width: 40%;
+  height: auto;
+  margin-left: 30%;
+  content: url(scripts/img/Global_Logo.PNG);
+
+}
+
+.loading-overlay {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 888;
+  cursor: pointer;
+}
+
+.preloader-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  height: 60px;
+  width: 60px;
+  margin: 0px auto;
+
+}
+
+.spinner-layer {
+  border-color: $brand-primary-light;
+}
+
+.circle-clipper .circle {
+  border-width: 6px;
+}
+
+.tabs {
+  background-color: $brand-primary-light2;
+  position: fixed;
+}
+
+.tabs .tab a, .tabs .tab.disabled a, .tabs .tab.disabled a:hover, .tabs .tab a:hover, .tabs .tab a.active {
+  color: #FFFFFF;
+}
+
+.tabs .tab {
+  text-transform: capitalize;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+  background-color: #0382ad;
+}
+
+.tabs .tab a.active {
+  border-bottom: 4px solid #bdbd00;
+}
+
+.text-warning {
+  background-color: #ffe7b2;
+  height: 40px;
+  text-align: center;
+  position: static;
+  width: 100vm;
+  padding-bottom: 0%;
+}
+
+.warning {
+  color: #ffc941;
+  margin-top: 8px;
+}
+
+.material-icons {
+  vertical-align: bottom;
+  font-size: 22px !important;
+}
+
+.textAlign {
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: 8px;
+}
+
+.collapsible {
+  -webkit-margin-start: 160px;
+  max-width: 100vw;
+  margin-left: 20px;
+  margin-right: 20px;
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+
+}
+
+.collapsible .stageClass {
+  cursor: pointer;
+}
+
+.collapsible .stageClass .btn[disabled] {
+  cursor: not-allowed;
+}
+
+.collapsible-header {
+  background-color: #d3d3d3;
+  display: block;
+  height: 4em;
+  vertical-align: middle;
+  cursor: default;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+.collapsible-body {
+  display: block;
+  padding: 0;
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  margin: 0.5rem 0 1rem 0;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+.center {
+  text-align: center;
+}
+
+.table-header {
+  background-color: #e7e7e7;
+  height: 1em;
+}
+
+td, th {
+  border-radius: 0;
+}
+
+.imageTable th {
+  background-color: #ffffff;
+}
+
+.imageTable th,
+.imageTable td {
+  border: 1px solid lightgrey;
+  text-align: center;
+
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.loadButton, .loadButton:hover, .loadButton:focus {
+  max-width: 100px;
+  height: 55px;
+  padding-left: 4px;
+  padding-right: 2px;
+  margin: 0 auto;
+  font-size: 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 14px;
+  text-transform: none;
+}
+
+.loadButton i {
+  font-size: 20px !important;
+  vertical-align: top;
+
+}
+
+.btn-floating {
+  background-color: $brand-primary-light;
+  border-radius: 1px;
+  width: 130px;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin-bottom: 10px;
+  text-align: right;
+  vertical-align: middle;
+  align-content: left;
+  line-height: 8px;
+}
+
+.btn-floating i {
+  padding-top: 10px;
+  font-size: 24px !important;
+  text-align: left;
+  line-height: 8px;
+  vertical-align: bottom;
+
+}
+
+.swal-icon--custom {
+  content: url(scripts/img/fire.png);
+  height: 80px;
+}
+
+.swal-button--confirm, .swal-button--confirm:focus {
+  background-color: $brand-primary-light;
+  font-size: 16px;
+}
+
+.swal-button--cancel, .swal-button--cancel:focus {
+  background-color: lightgrey;
+  font-size: 16px;
+
+}
+
+.swal-footer {
+  text-align: initial;
+
+}
+
+.swal-footer .swal-button-container:nth-of-type(even) {
+  float: right;
+
+}
+
+.swal-footer .swal-button-container:nth-of-type(odd) {
+  float: left;
+
+}
+
+table.bordered > tbody > tr:focus {
+  background-color: #ffffff;
+
+}
+
+th {
+  height: 20px;
+  padding: 5px 5px;
+}
+
+@media screen and (min-width: 668px) {
+  .dialog-width {
+    width: 700px;
+    margin-top: 80px;
+    margin-left: 20px;
+    height: auto;
+    background-color: $brand-primary-light;
+  }
+  ux-dialog > ux-dialog-header {
+    color: white;
+  }
+  ux-dialog > ux-dialog-body, ux-dialog > ux-dialog-footer {
+    background-color: white;
+  }
+  ux-dialog > ux-dialog-footer button:hover:enabled {
+    background-color: $brand-primary-light;
+    color: #ffffff;
+
+  }
+
+  input:not([type]),
+  input[type=text]:not(.browser-default),
+  input[type=password]:not(.browser-default),
+  input[type=email]:not(.browser-default),
+  input[type=url]:not(.browser-default),
+  input[type=time]:not(.browser-default),
+  input[type=date]:not(.browser-default),
+  input[type=datetime]:not(.browser-default),
+  input[type=datetime-local]:not(.browser-default),
+  input[type=tel]:not(.browser-default),
+  input[type=number]:not(.browser-default),
+  input[type=search]:not(.browser-default),
+  textarea.materialize-textarea {
+    height: auto;
+    margin: 0 auto;
+  }
+  input:not([type]):focus:not([readonly]),
+  input[type=text]:not(.browser-default):focus:not([readonly]),
+  input[type=password]:not(.browser-default):focus:not([readonly]),
+  input[type=email]:not(.browser-default):focus:not([readonly]),
+  input[type=url]:not(.browser-default):focus:not([readonly]),
+  input[type=time]:not(.browser-default):focus:not([readonly]),
+  input[type=date]:not(.browser-default):focus:not([readonly]),
+  input[type=datetime]:not(.browser-default):focus:not([readonly]),
+  input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+  input[type=tel]:not(.browser-default):focus:not([readonly]),
+  input[type=number]:not(.browser-default):focus:not([readonly]),
+  input[type=search]:not(.browser-default):focus:not([readonly]),
+  textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: none;
+    -webkit-box-shadow: 0 1px 0 0 lightgrey;
+    box-shadow: 0 1px 0 0 lightgrey;
+  }
+}
+
+.btn.disabled,
+.disabled.btn-large,
+.btn-floating.disabled,
+.btn-large.disabled,
+.btn-flat.disabled,
+.btn:disabled,
+.btn-large:disabled,
+.btn-floating:disabled,
+.btn-large:disabled,
+.btn-flat:disabled,
+.btn[disabled],
+[disabled].btn-large,
+.btn-floating[disabled],
+.btn-large[disabled],
+.btn-flat[disabled] {
+  background: none;
+  cursor: no-drop;
+
+}
+
+.badIcon, .goodIcon, .loadIcon, .cookIcon, .coolIcon, .unloadIcon, .blueFlag, .redFlag, .badSaveIcon, .orangeFlag {
+  background-size: cover;
+  border-radius: 50% 50% 50% 50%;
+}
+
+.clearIcon {
+  color: red;
+  font-size: 12px !important;
+  vertical-align: middle !important;
+}
+
+.badIcon {
+  content: url(scripts/img/down.png);
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+}
+
+.badSaveIcon {
+  content: url(scripts/img/down-orange.png);
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+}
+
+.goodIcon {
+  content: url(scripts/img/up.png);
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+}
+
+.loadIcon {
+  content: url(scripts/img/load-initial.png);
+  height: 40px;
+  width: 40px;
+}
+
+.cookIcon {
+  content: url(scripts/img/cook-initial.png);
+  height: 40px;
+  width: 40px;
+  vertical-align: top;
+}
+
+.coolIcon {
+  content: url(scripts/img/cool-initial.png);
+  height: 40px;
+  width: 40px;
+}
+
+.unloadIcon {
+  content: url(scripts/img/unload-initial.png);
+  height: 40px;
+  width: 40px;
+}
+
+.loadIconActive {
+  content: url(scripts/img/load-active.png);
+  height: 40px;
+  width: 40px;
+}
+
+.cookIconActive {
+  content: url(scripts/img/cook-active.png);
+  height: 40px;
+  width: 40px;
+}
+
+.coolIconActive {
+  content: url(scripts/img/cool-active.png);
+  height: 40px;
+  width: 40px;
+}
+
+.unloadIconActive {
+  content: url(scripts/img/unload-active.png);
+  height: 40px;
+  width: 40px;
+}
+
+.blueFlag {
+  content: url(scripts/img/blueFlag.png);
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.orangeFlag {
+  content: url(scripts/img/orangeFlag.png);
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.blueHeader {
+  content: url(scripts/img/blueHeader.png);
+  margin-top: 5px;
+  height: 25px;
+  width: 25px;
+  vertical-align: top;
+}
+
+.redHeader {
+  content: url(scripts/img/redHeader.png);
+  margin-top: 5px;
+  height: 22px;
+  width: 25px;
+  vertical-align: top;
+}
+
+.greenHeader {
+  content: url(scripts/img/greenHeader.png);
+  margin-top: 5px;
+  height: 22px;
+  width: 25px;
+  vertical-align: top;
+}
+
+.redFlag {
+  content: url(scripts/img/redFlag.png);
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+
+}
+
+.productImage {
+  margin-left: 10%;
+}
+
+.operationButton {
+  color: white;
+  background-color: green;
+  width: 80px;
+  font-size: 10px;
+  padding: 0;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.greenChecklabel, .redChecklabel {
+  display: block;
+  position: relative;
+  margin-bottom: 12px;
+  margin-left: 40px;
+  height: 10px;
+  width: 10px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: center;
+}
+
+.checkLabel {
+  display: block;
+  padding-left: 15px;
+  cursor: pointer;
+  font-size: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  display: flex;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 10px;
+  width: 10px;
+  margin-top: 10px;
+  background-color: #ffffff;
+}
+
+.checkmark2 {
+  display: block;
+  top: 0;
+  left: 0;
+  height: 10px;
+  width: 10px;
+  margin-top: 5px;
+  background-color: #ffffff;
+}
+
+.greenChecklabel input ~ .checkmark {
+  outline: 1px solid green;
+
+}
+
+.checkLabel input ~ .checkmark2 {
+  outline: 1px solid grey;
+  vertical-align: middle;
+}
+
+.redChecklabel input ~ .checkmark {
+  outline: 1px solid red;
+}
+
+/* On mouse-over, add a grey background color */
+.greenChecklabel:hover input ~ .checkmark, .redChecklabel:hover input ~ .checkmark, .checkLabel:hover input ~ .checkmark2 {
+  cursor: pointer;
+}
+
+/* When the checkbox is checked, add a blue background */
+.greenChecklabel input:checked ~ .checkmark {
+  background-color: green;
+}
+
+.redChecklabel input:checked ~ .checkmark {
+  background-color: red;
+}
+
+.checkLabel input:checked ~ .checkmark2 {
+  background-color: #ffdb5b;
+}
+
+/* Show the checkmark when checked */
+.checkLabel input:checked ~ .checkmark:after,
+.greenChecklabel input:checked ~ .checkmark:after,
+.redChecklabel input:checked ~ .checkmark:after {
+  display: block;
+}
+
+textarea {
+  resize: vertical;
+  overflow: auto;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: white;
+  border-bottom: 2px solid yellow;
+}
+
+.validation-message {
+  color: red;
+}
+
+.submitIcon, .submitIcon:focus {
+  color: white;
+  background-color: #0c9444;
+}
+
+.submitIcon:hover {
+  background-color: #0c6f38;
+}
+
+.saveIcon, .saveIcon:focus {
+  color: white;
+  background-color: #727272;
+}
+
+.saveIcon:hover {
+  background-color: #5e5e5e;
+}
+
+.stopIcon, .stopIcon:focus {
+  color: white;
+  background-color: #b2082a;
+}
+
+.stopIcon:hover {
+  background-color: #810824;
+}
+
+label {
+  color: #000000;
+}
+
+[type="checkbox"] + label {
+  //position: initial;
+}
+
+.row {
+  margin-bottom: 10px;
+}
+
+[type="radio"]:not(:checked), [type="radio"]:checked {
+  opacity: 1;
+  height: 1.6em;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  pointer-events: auto;
+}
+
+input[type="radio" i]:checked {
+  -webkit-text-fill-color: yellow;
+  background-color: #ffc941;
+}
+
+input[type="radio" i] {
+  -webkit-appearance: checkbox;
+  color: white;
+
+}
+
+.disableTimer {
+  color: darkgrey;
+}
+
+.loginContainer {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 10%;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+.loginContainer, .card-content {
+  padding: 10px;
+}
+
+.downDisabled{
+  content: url(scripts/img/down-disabled.png);
+  height: 60px;
+  width: 60px;
+}
+
+
+.aut-sort:after{
+  font-family: 'Material Icons';
+  padding-right: 0.5em;
+  width: 1.288571429em;
+  display: inline-block;
+  text-align: center;
+  vertical-align:middle;
+}
+
+.aut-sortable:after{
+  content: url(scripts/img/sortable.png);
+}
+
+.aut-asc:after{
+  content: url(scripts/img/ascending.png);
+}
+
+.aut-desc:after{
+  content: url(scripts/img/descending.png);
+}

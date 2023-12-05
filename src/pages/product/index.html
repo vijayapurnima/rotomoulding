@@ -1,0 +1,48 @@
+<template>
+
+  <table class="bordered"
+         aurelia-table="data.bind: products; display-data.bind: $list;">
+    <thead class="table-header">
+    <tr>
+      <th class="col m1" if.bind="finishFlag" aut-sort="custom.bind: dateSort">Date</th>
+      <th class="col m3" if.bind="finishFlag" aut-sort="key: product_code; default: asc">Product Code</th>
+      <th class="col m1" if.bind="!finishFlag">Date</th>
+      <th class="col m3" if.bind="!finishFlag">Product Code</th>
+      <th class="col m1">Serial Number</th>
+      <th class="col m3">Description</th>
+      <th class="col m2">Colour</th>
+      <th class="col m1">Critical Tasks</th>
+      <th class="col m1">Shot Weight</th>
+      <th class="col m1" if.bind="!finishFlag">Time <i class="material-icons">schedule</i></th>
+      <th class="col m1" if.bind="finishFlag"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="${((product.user_id && login.current.id != product.user_id)?'disableTimer':'')}"
+        repeat.for="product of $list" style="cursor: pointer;"
+        if.bind="products.length>0">
+      <td class="col m1" click.trigger="viewProductInfo(product)">${product.start_date || '-' }</td>
+      <td class="col m3" click.trigger="viewProductInfo(product)">${product.product_code}</td>
+      <td class="col m1" click.trigger="viewProductInfo(product)">${product.product_serial}</td>
+      <td class="col m3" click.trigger="viewProductInfo(product)">${product.product_desc || '-'}</td>
+      <td class="col m2" click.trigger="viewProductInfo(product)">${product.component_colour || '-'}</td>
+      <td class="col m1" style="color: red;" click.trigger="viewProductInfo(product)">${product.powder_type || '-'}</td>
+      <td class="col m1" click.trigger="viewProductInfo(product)">${product.shot_weight || '-'}</td>
+      <td class="col m1" if.bind="!finishFlag">
+        <span
+          class="${(!product.user_id || login.current.id==product.user_id)&&((products.length==1)||(!status || (status.match('ed') && timerdisableStatus.indexOf(status)<0)))?'':'disableTimer'}">
+        <i class="material-icons" type="button" click.trigger="updateTimer(product)">${((products.length==1 &&(runId.timer && runId.timer.running))||(product.wo_timer && product.wo_timer.running)?'pause':'play_arrow')}</i>
+          ${getTimeFormat(product.wo_timer.elapsed,product.wo_time,product.wo_timer._running,runId.timer.elapsed,runId.time,runId.timer) || "00:00"}
+          </span>
+      </td>
+      <td class="col m1" if.bind="finishFlag"><img type="button" class="${((product.grading)?'redFlag':(product.fault_data?'orangeFlag':'blueFlag'))}"
+                                                   click.trigger="viewFinishingDetails(product)"></td>
+    </tr>
+    <tr if.bind="products.length==0 && finishFlag">
+      <td colspan="6" style="text-align:center;color: darkred;">No Finishing Products</td>
+    </tr>
+    </tbody>
+  </table>
+
+</template>
+

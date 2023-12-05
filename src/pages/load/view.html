@@ -1,0 +1,20 @@
+<template>
+
+  <div class="container">
+    <div style="text-align: center;color:#b7082b;font-size: 22px;padding-top:1.5%;"><img class="redHeader">&nbsp;LOAD</div>
+    <hr style="background-color:#b7082b;height: 5px;">
+    <br>
+    <div style="margin-left:20px;margin-right: 20px; " if.bind="loaded">
+      <product-detail product.bind="product" oven-name.bind="ovenName" run-date.bind="runDate"
+                      arm-id.bind="armName" load-flag="true" staff.bind="users"
+                      validation.bind="validation"></product-detail>
+      <div style="margin-top: 40px;">
+        <button type="button" class="btn left" click.trigger="viewPrevious()">Back</button>&nbsp;
+        <span style="margin-bottom:10%;padding-left:31%;padding-top: 1%; font-size:20px;">${products.indexOf(product)+1}/${products.length}</span>
+        <button type="button" class="btn right" click.trigger="viewNext()">
+          ${(products.indexOf(product)==products.length-1)?'Finish':'Next'}
+        </button>
+      </div>
+    </div>
+  </div>
+</template>

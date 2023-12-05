@@ -1,0 +1,98 @@
+<template>
+
+
+  <div style="text-align: center;">
+    <h5 style="">${product.product_code || product.product_desc}</h5>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Notes</b></div>
+    <div class="col m4"><a class="link" href="#" click.trigger="openLink()">http://accentis_link.com.au/</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Serial Code</b></div>
+    <div class="col m4"><span>${product.product_serial || '&#8213;'}</span></div>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Customer</b></div>
+    <div class="col m4"><span>${product.customer_name  || '&#8213;'}</span></div>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Order Number</b></div>
+    <div class="col m4"><span>${product.customer_order_id  || '&#8213;'}</span></div>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Date</b></div>
+    <div class="col m4"><span>${product.start_date  || '&#8213;'}</span></div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col m2"><b>Product Code</b></div>
+    <div class="col m4"><span>${product.product_code  || '&#8213;'}</span></div>
+  </div>
+  <div class="row">
+    <div class="col s4 m2"><b>Oven</b></div>
+    <div class="col m4"><span>${ovenName  || '&#8213;'}</span></div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col m12"><b>Unload Time(<span style="color: red;">${getTime((product.unload_time_kpi||0)*1000)}</span>)</b></div>
+    <div class="col m12"><span>${getTime(product.timer.elapsed,product.wo_time)}</span></div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col m12"><b>Description</b></div>
+    <div class="col m12"><span>${product.product_desc   || '&#8213;'}</span></div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col m12"><b>Special Instructions</b></div>
+    <div class="col m12 form-group"><span>${product.special_instruct  || '&#8213;'}</span></div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col m12"><b>Unloaded by</b></div>
+    <div class="col m6 form-group">
+      <input type="number" class="form-control" if.bind="!product.unloaded1"
+             value.bind="product.unloaded_by_1 & validate" style="border-bottom: 2px solid yellow;"
+             change.trigger="getStaffName(1,product.unloaded_by_1)" autofocus.bind="product.unloaded1==''">
+      <div class="col m12" if.bind="product.unloaded1">${product.unloaded1.staff_name}&nbsp;<i
+        class="material-icons clearIcon" click.trigger="product.unloaded1=''">clear</i></div>
+    </div>
+    <div class="col m6 form-group">
+      <input type="number" class="form-control" if.bind="!product.unloaded2 && product.unloaded_by_1"
+             value.bind="product.unloaded_by_2 & validate" style="border-bottom: 2px solid yellow;"
+             change.delegate="getStaffName(2,product.unloaded_by_2)" autofocus.bind="product.unloaded2==''">
+      <div class="col m12" if.bind="product.unloaded2">${product.unloaded2.staff_name}&nbsp;<i
+        class="material-icons clearIcon" click.trigger="product.unloaded2=''">clear</i></div>
+    </div>
+    <div class="col m6 form-group">
+      <input type="number" class="form-control" if.bind="!product.unloaded3 && product.unloaded_by_2"
+             value.bind="product.unloaded_by_3 & validate" style="border-bottom: 2px solid yellow;"
+             change.delegate="getStaffName(3,product.unloaded_by_3)" autofocus.bind="product.unloaded3==''">
+      <div class="col m6" if.bind="product.unloaded3">${product.unloaded3.staff_name}&nbsp;<i
+        class="material-icons clearIcon" help-text="click to remove" click.trigger="product.unloaded3=''">clear</i>
+      </div>
+    </div>
+    <div class="col m6 form-group">
+      <input type="number" class="form-control" if.bind="!product.unloaded4 && product.unloaded_by_3"
+             value.bind="product.unloaded_by_4 & validate" style="border-bottom: 2px solid yellow;"
+             change.delegate="getStaffName(4,product.unloaded_by_4)" autofocus.bind="product.unloaded1==''">
+      <div class="col m6" if.bind="product.unloaded4">${product.unloaded4.staff_name}&nbsp;<i
+        class="material-icons clearIcon" click.trigger="product.unloaded4=''">clear</i></div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col m2"><b>Operator</b></div>
+    <div class="col m3 form-group">
+      <input type="number" class="form-control" if.bind="!product.operator" autofocus.bind="product.operator==''"
+             style="border-bottom: 2px solid yellow;" value.bind="product.unload_operator & validate"
+             change.trigger="setOperator()">
+      <div class="col m12" if.bind="product.operator">${product.operator.staff_name}&nbsp;<i
+        class="material-icons clearIcon" click.trigger="product.operator=''">clear</i></div>
+    </div>
+  </div>
+  <hr>
+  </span>
+</template>

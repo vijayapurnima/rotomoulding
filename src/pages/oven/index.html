@@ -1,0 +1,20 @@
+<template>
+
+  <div class="container" style="align-content: center" if.bind="loaded">
+    <div style="text-align: center;">
+      <h4>Oven List</h4>
+      <p>&nbsp;Select an Oven</p>
+    </div>
+    <div class="grid">
+      <div repeat.for="oven of ovens | sort: 'name':'ascending'">
+        <div class="row">
+          <button class="btn btn-primary button-secondary" md-button="disabled:false" click.trigger="getArms(oven)">
+            ${oven.name}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</template>

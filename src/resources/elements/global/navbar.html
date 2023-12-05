@@ -1,0 +1,15 @@
+<template>
+
+  <md-navbar md-fixed="true">
+    <div class="col s12" style="padding-left: 2%;">
+      <breadcrumb breadcrumb-list.bind="breadcrumbs" if.bind="breadcrumbs"></breadcrumb>
+      <div if.bind="env.name == 'dev'" class="badge badge-danger"><span>TEST DATABASE</span></div>
+      <ul class="right">
+        <!-- Dropdown Trigger -->
+        <li if.bind="login.current">
+          <a click.delegate="signOut()"><i class="material-icons right">perm_identity</i>&nbsp;Sign out</a>
+        </li>
+      </ul>
+    </div>
+  </md-navbar>
+</template>

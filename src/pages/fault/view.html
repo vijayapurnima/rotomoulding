@@ -1,0 +1,37 @@
+<template>
+
+  <div if.bind="loaded" style="overflow-x: hidden;">
+    <ul class="tabs tab-demo z-depth-1" style="width:100%;">
+      <li class="tab" style="width:50%" repeat.for="fault_tab of fault_tabs">
+        <a class="${faultIndex==$index?'active':''}">${fault_tab}</a>
+      </li>
+    </ul>
+
+    <div class="center" style="margin-top: 65px;">
+      <span class="textAlign" if.bind="faultIndex==0"><h5>Fault Reason</h5></span>
+      <span class="textAlign" if.bind="faultIndex>0"><h5>Submit Fault</h5></span>
+    </div>
+  </div>
+
+  <div id="content" style="margin-left:20px;margin-right: 20px; position: static;" if.bind="loaded">
+
+    <div repeat.for="ftype  of fault_categories" if.bind="fault_categories"><span>${ftype.fault_categroy_name}</span>
+    </div>
+
+    <fault-detail if.bind="faultIndex==0" validation.bind="validation" product.bind="product"
+                  fault-types.bind="fault_types" fault-reasons.bind="fault_reasons" reason-ids.bind="fault_reason_ids"
+                  oven-name.bind="ovenName" staff.bind="users" run-date.bind="runDate"
+                  validation.bind="validation"></fault-detail>
+    <submit-fault if.bind="faultIndex>0" validation.bind="validation" product.bind="product"
+                  oven-name.bind="ovenName" staff.bind="users" fault-categories.bind="fault_categories"
+                  run-date.bind="runDate" validation.bind="validation" gradings.bind="gradings"></submit-fault>
+
+    <div style="margin-top: 40px;">
+      <button type="button" class="btn left" click.trigger="goBack()">Back</button>&nbsp;
+      <button type="button" class="btn right" click.trigger="viewNext()" if.bind="faultIndex==0">Next</button>
+      <button type="button" class="btn saveIcon center-align" style="text-align: center;margin-left: 31%;" click.trigger="submitDetails(false)">Save</button>
+      <button type="button" class="btn right submitIcon" if.bind="faultIndex>0" click.trigger="submitDetails(true)">Submit
+      </button>
+    </div>
+  </div>
+</template>

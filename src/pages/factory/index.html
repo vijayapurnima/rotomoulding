@@ -1,0 +1,21 @@
+<template>
+
+  <div class="container" if.bind="loaded">
+    <img class="business-logo"/>
+
+    <div style="text-align: center;">
+      <h4 style="">Welcome</h4>
+      <p style="padding-left:2%;">&nbsp;Select a factory</p>
+
+    <br>
+
+    <div repeat.for="factory of factories | sort: 'name':'ascending'">
+      <div class="row">
+        <button class="btn button-primary" md-button="disabled:false" click.trigger="getOvens(factory)">${factory.name}</button>
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+</template>

@@ -1,0 +1,18 @@
+<template>
+
+  <div class="container">
+    <div style="text-align: center;color:#225a96;font-size: 22px;padding-top:1.5%;"><img class="blueHeader">&nbsp;<span>FINISHING</span></div>
+    <hr style="background-color:#225a96;height: 5px;">
+    <br>
+    <div style="margin-left:20px;margin-right: 20px; " if.bind="loaded">
+      <finishing-detail product.bind="product" oven-name.bind="ovenName" arm-name.bind="armName" run-date.bind="runDate"
+                      load-flag="true" staff.bind="users" validation.bind="validation"></finishing-detail>
+      <div style="margin-top: 180px;">
+        <button class="btn left"  click.trigger="saveDetails()">Save</button>
+        <span class="center-align" style="text-align: center;margin-left: 31%;">
+          <img type="button" class="${product.grading?'downDisabled':(product.fault_data?'badSaveIcon':'badIcon')}"  style="height:40px;width:40px;align-content: center;" click.trigger="goToFaultPage()"/></span>
+        <button type="button" class="btn right submitIcon" click.trigger="submitDetails()">Submit</button>
+    </div>
+    </div>
+  </div>
+</template>

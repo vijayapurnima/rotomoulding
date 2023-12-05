@@ -1,0 +1,5 @@
+<template>
+  <span class = "breadcrumb" repeat.for="item of breadcrumbList" >
+          <i class=material-icons>${item.icon}</i><a href="#" click.trigger="goToPage(item)">&nbsp;${getData($index)}</a>
+  </span>
+</template>

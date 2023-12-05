@@ -1,0 +1,17 @@
+<template>
+  <require from="materialize-amd/css/materialize.css"></require>
+  <require from="styles/style.css"></require>
+
+
+  <navbar router-details.bind="router" breadcrumbs.bind="showBreadcrumb" env.bind="env"></navbar>
+
+  <div class="loading-overlay" show.bind="busy.active">
+    <md-progress md-type="circular" show.bind="busy.active"></md-progress>
+  </div>
+
+  <div class="container" style="width:100%;max-width:100%;padding-bottom: 48px;">
+    <router-view></router-view>
+  </div>
+
+  <edo-footer></edo-footer>
+</template>

@@ -1,0 +1,169 @@
+<template>
+
+
+  <div style="text-align: center;">
+    <h5 style="">${product.product_code || product.product_desc}</h5>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Notes</b></div>
+    <div class="col m4"><a class="link" href="#" click.trigger="openLink()">${product.note_url ||
+      'http://accentis_link.com.au/'}</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Serial Code</b></div>
+    <div class="col m4"><span>${product.product_serial || '&#8213;'}</span></div>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Arm</b></div>
+    <div class="col m4"><span>${armId  || '&#8213;'}</span></div>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Run</b></div>
+    <div class="col m4"><span>${product.run_number  || '&#8213;'}</span></div>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Date</b></div>
+    <div class="col m4"><span>${product.start_date  || '&#8213;'}</span></div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col m2"><b>Product Code</b></div>
+    <div class="col m4"><span>${product.product_code  || '&#8213;'}</span></div>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Oven</b></div>
+    <div class="col m4"><span>${ovenName  || '&#8213;'}</span></div>
+  </div>
+  <hr if.bind="loadFlag">
+  <div class="row" if.bind="loadFlag">
+    <div class="col m12"><b>Load Time(<span style="color: red;">${getTime((product.load_time_kpi||0)*1000)}</span>)</b></div>
+    <div class="col m12"><span>${getTime(product.timer.elapsed,product.wo_time)}</span></div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col m12"><b>Description</b></div>
+    <div class="col m12"><span>${product.product_desc  || '&#8213;'}</span></div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col m12"><b>Special Instructions</b></div>
+    <div class="col m12 form-group"><span>${product.special_instruct  || '&#8213;'}</span></div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col m12"><b>Mould Locations</b></div>
+    <div class="col m12">
+      <view-mould-locations mould-locations.bind="product.mould_locations"
+                            if.bind="product.mould_locations.length>0"></view-mould-locations>
+      <div class="col m10" if.bind="product.mould_locations.length==0">No Mould Locations</div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col m12"><b>Product Components</b></div>
+    <div class="col m12">
+      <view-components components.bind="product.components" if.bind="product.components.length>0"></view-components>
+      <div class="col m10" if.bind="product.components.length==0">No Product Components</div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col m2"><b>Critical Tasks</b></div>
+    <div class="col m6" style="color: red;"><span>${product.powder_type || '&#8213;'}</span></div>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Colour</b></div>
+    <div class="col m6"><span>${product.component_colour  || '&#8213;'}</span></div>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Normal Shot</b></div>
+    <div class="col m6"><span>${product.shot_weight  || '&#8213;'}</span><span
+      if.bind="product.shot_weight">&nbsp;kg</span></div>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>White Powder</b></div>
+    <div class="col m6"><span>${product.white_powder  || '&#8213;'}</span><span
+      if.bind="product.white_powder">&nbsp;gm</span></div>
+  </div>
+  <hr>
+  <span if.bind="showFlag">
+  <div class="row">
+    <div class="col m2"><b>Batch Code</b></div>
+    <div class="col m3 form-group"><input class="form-control" type="text" style="border-bottom: 2px solid yellow;"
+                                          value.bind="product.batch_code & validate"></div>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Weighed By</b></div>
+    <div class="col m3 form-group">
+        <input type="number" if.bind="!product.weighed_operator" style="border-bottom: 2px solid yellow;"
+               autofocus.bind="product.weighed_operator==''" value.bind="product.weighed_by & validate"
+               change.trigger="setOperator('weighed_by')">
+      <div class="col m12" if.bind="product.weighed_operator">${product.weighed_operator.staff_name}&nbsp;<i
+        class="material-icons clearIcon" click.trigger="product.weighed_operator=''">clear</i></div>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Weight Used</b></div>
+    <div class="col m4 form-group"><input class="col m9 form-control" type="number"
+                                          style="border-bottom: 2px solid yellow;" min="0" value="0" step="any"
+                                          value.bind="product.weight_used & validate"><span
+      class="col m3">kg</span></div>
+  </div>
+  <div class="row">
+    <div class="col m2"><b>Bag Count</b></div>
+    <div class="col m3 form-group"><input class="form-control" type="number" style="border-bottom: 2px solid yellow;"
+                                          value.bind="product.bag_count & validate"></div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col m12"><b>Loaded By</b></div>
+    <div class="col m12">
+       <div class="col m6 form-group">
+      <input class="form-control" style="border-bottom: 2px solid yellow;" type="number" if.bind="!product.loaded1"
+             value.bind="product.loaded_by_1 & validate"
+             change.trigger="getStaffName(1,product.loaded_by_1)" autofocus.bind="product.loaded1==''">
+      <div class="col m12" if.bind="product.loaded1">${product.loaded1.staff_name}&nbsp;<i
+        class="material-icons clearIcon" click.trigger="product.loaded1=''">clear</i></div>
+    </div>
+    <div class="col m6">
+      <input type="number" if.bind="!product.loaded2 && product.loaded_by_1"
+             value.bind="product.loaded_by_2" style="border-bottom: 2px solid yellow;"
+             change.delegate="getStaffName(2,product.loaded_by_2)" autofocus.bind="product.loaded2==''">
+      <div class="col m12" if.bind="product.loaded2">${product.loaded2.staff_name}&nbsp;<i
+        class="material-icons clearIcon" click.trigger="product.loaded2=''">clear</i></div>
+    </div>
+    </div>
+    <div class="col m12">
+    <div class="col m6">
+      <input type="number" if.bind="!product.loaded3 && product.loaded_by_2"
+             value.bind="product.loaded_by_3" style="border-bottom: 2px solid yellow;"
+             change.delegate="getStaffName(3,product.loaded_by_3)" autofocus.bind="product.loaded3==''">
+      <div class="col m12" if.bind="product.loaded3">${product.loaded3.staff_name}&nbsp;<i
+        class="material-icons clearIcon" help-text="click to remove" click.trigger="product.loaded3=''">clear</i>
+      </div>
+    </div>
+    <div class="col m6">
+      <input type="number" if.bind="!product.loaded4 && product.loaded_by_3"
+             value.bind="product.loaded_by_4" style="border-bottom: 2px solid yellow;"
+             change.delegate="getStaffName(4,product.loaded_by_4)" autofocus.bind="product.loaded4==''">
+      <div class="col m12" if.bind="product.loaded4">${product.loaded4.staff_name}&nbsp;<i
+        class="material-icons clearIcon" click.trigger="product.loaded4=''">clear</i></div>
+    </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col m2"><b>Operator</b></div>
+    <div class="col m3 form-group">   <input type="number" if.bind="!product.operator"
+                                             style="border-bottom: 2px solid yellow;"
+                                             autofocus.bind="product.operator==''"
+                                             value.bind="product.load_operator & validate"
+                                             change.trigger="setOperator('load_operator')">
+      <div class="col m12" if.bind="product.operator">${product.operator.staff_name}&nbsp;<i
+        class="material-icons clearIcon" click.trigger="product.operator=''">clear</i></div>
+    </div>
+  </div>
+  <hr>
+    </span>
+</template>

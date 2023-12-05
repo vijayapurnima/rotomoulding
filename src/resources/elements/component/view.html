@@ -1,0 +1,19 @@
+<template>
+
+  <table class="striped">
+    <thead class="table-header">
+    <th class="col m2">Qty</th>
+    <th class="col m3">Code</th>
+    <th class="col m4">Description</th>
+    <th class="col m3">Rack Address</th>
+    </thead>
+    <tbody >
+    <tr repeat.for="component of components | sort: 'component_qty':'ascending'">
+      <td class="col m2">${(component.component_qty || '-')}<span if.bind="component.component_qty">&nbsp;${component.component_unit}</span></td>
+      <td class="col m3">${component.component_itemcode || '-'}</td>
+      <td class="col m4">${component.component_desc || '-'}</td>
+      <td class="col m3">${component.component_location || '-'}</td>
+    </tr>
+    </tbody>
+  </table>
+</template>
